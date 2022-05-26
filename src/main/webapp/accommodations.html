@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>kakaomap API 응용하기</title>
+
+    <!-- css, bootstrap -->
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <!-- axios, kakaomap API, bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bb7f443bad11a1319b9315c49c73e826&libraries=services"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+
+  <body>
+    <!-- header -->
+    <div class="header" style="margin-bottom: 1%">
+      <h1 class="name">ES's blog</h1>
+      <div class="title_wrapper">
+        <h1 class="title">웹프로그래밍 프로젝트</h1>
+        <h6 class="last_update_date">2022.05.27</h6>
+      </div>
+    </div>
+
+    <!-- 결과물 -->
+    <div class="background">
+      <div class="list_wrapper">
+        <ul id="accommodation_list" class="list-group"></ul>
+      </div>
+      <div class="information_wrapper">
+        <p id="information">숙박업소 정보</p>
+      </div>
+      <div id="map" style="width: 30vw; height: 50vh"></div>
+    </div>
+    <script src="accommodations.js"></script>
+
+    <!-- container -->
+    <div class="index_container">
+      <!-- content -->
+      <div class="content">
+        <p>
+          위에 있는 데모가 제가 kakaomap API를 응용한 결과물이에요. 디자인이
+          볼품없지만 그만큼 카카오맵 사용에 집중했으니 이해해주세요😁
+        </p>
+        <p>
+          어떤 동작을 수행하는 데모인지 먼저 설명한 후에 구현 방법을
+          설명해드릴게요.
+        </p>
+        <p>
+          우선 데모 가장 왼쪽에 있는 목록과 가운데 박스에 텍스트로 나타나는
+          정보는 무엇이냐.. 무료로 데이터를 제공하는
+          <a href="https://www.data.go.kr/">공공데이터 포털</a>에서 전주
+          숙박가능업소 open API 데이터를 제공받아 출력한 내용이에요.
+          <del>
+            사실 이 부분은 kakaomap API를 사용하면서 더 나아가 다양한 API
+            사용으로 주제를 확장하려고 사용해봤으나, 지금 생각해보니 과제 주제에
+            많이 어긋난 거 같네요..
+          </del>
+          따라서 이 부분에 대한 자세한 설명은 생략하고 넘어가겠습니다. 카카오맵
+          API에 위치(도로명)로 검색한 장소의 좌표를 구하고 지도를 그 좌표로
+          이동시키면서 마커를 찍어주는 기능을 구현할 수 있더라구요! 위 데모는 그
+          기능을 활용하여 만들었습니다. 목록에서 클릭한 숙박가능업소의 장소를
+          기준으로 카카오맵에서 검색하여 그 위치로 지도를 이동시키고 마커를 찍는
+          역할을 수행하게 했어요.
+        </p>
+        <p>자, 이제 본격적으로 어떻게 구현하는 지에 대해 알아볼까요!</p>
+        <p>
+          코드 상세 내용은
+          <a
+            href="https://github.com/LimEunSang/jeonju_accomodations/blob/main/src/main/webapp/accommodations.html"
+            >html 코드</a
+          >와
+          <a
+            href="https://github.com/LimEunSang/jeonju_accomodations/blob/main/src/main/webapp/accommodations.js"
+            >javascript 코드</a
+          >를 참고해주세요!<br />
+          카카오맵 API를 사용하기 위해
+          <a href="https://apis.map.kakao.com/web/">카카오맵 API 공식 사이트</a
+          >에 들어가서 로그인을 한 후 key를 발급받습니다. 그리고 html 파일에
+          18행과 같이 코드를 추가시켜줍니다. 여기서
+          <code>appkey="[본인이 발급받은 JavaScipt key]"</code> 사용해주세요!!
+          javascript 파일에 80~87행과 같이 map을 정의해놓고 html 파일에 30행과
+          같이 선언하면 map이 나타나요!! 여기까지가 수업시간에 다룬
+          내용이에요.<br />
+          맵을 잘 띄웠다면 이제 기능을 추가해서 응용해봅시다! javascript 파일의
+          96행과 같이 주소를 좌표로 변환하는 역할을 수행할 객체를 생성해줍니다.
+          그리고 숙박가능업소 목록 아이템을 클릭했을 때 수행되는 onclick 함수
+          내에서 이 객체를 53~73행과 같이 사용할 수 있어요. 53행에서 첫 번째
+          인자로 string 주소값을 넣으면 56행에서 그 주소를 좌표로 변환하여
+          선언한 coords 변수에 저장해요. 그리고 71행에서 coords에 저장된 좌표로
+          맵을 이동시키게 됩니다. 59~62행은 해당 좌표에 마커를 찍는 역할을
+          수행해요. 65~68행은 인포위도우로 장소에 대한 설명을 표시합니다. 설명
+          내용은 66행과 같이 div 태그 내에 작성할 수 있어요! 저는 '업소명'
+          변수에 string 값을 집어넣어 사용했기 때문에 <code>${업소명}</code>과
+          같이 객체 사용 문법을 사용했어요.<br />추가로 90행, 93행 코드를
+          추가시키면 스카이뷰로 지도 타입을 전환할 수 있는 기능도 생긴답니다!
+        </p>
+
+        <p>
+          저는
+          <a href="https://apis.map.kakao.com/web/">카카오맵 API 공식 사이트</a
+          >를 참고하여 구현했어요. 여기에 모든게 아주 자세히 설명되어있어요.
+          혹시나 저처럼 카카오맵 API를 더 활용해 보실 분들은 여기 문서를 꼭
+          참고하세요!!
+        </p>
+      </div>
+
+      <!-- category -->
+      <div class="category">
+        <div class="title"><strong>category</strong></div>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html"> Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> kakaomap API 응용하기 </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> 계산기 응용하기 - 서블릿 </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+      <p>E-MAIL. dmstkd2905@naver.com / eunsang</p>
+      <p>Copyright © nothing.</p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+/* header */
+
+.header .name {
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 0.8%;
+  margin-bottom: 0.8%;
+}
+
+.header .title_wrapper {
+  background-image: url("background.jpg");
+  display: flex;
+  flex-direction: column;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.header .title_wrapper .title {
+  margin-left: 15%;
+  margin-right: 15%;
+  color: aliceblue;
+}
+
+.header .title_wrapper .last_update_date {
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 1%;
+  color: darkgray;
+  font-size: small;
+}
+
+/* footer */
+.footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #cccccc;
+  text-align: center;
+  color: #555;
+}
+
+/* index_container */
+
+.index_container {
+  margin-left: 15%;
+  margin-right: 15%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  display: flex;
+}
+
+.index_container .content {
+  width: 70%;
+  padding-right: 2%;
+}
+
+.index_container .category {
+  width: 30%;
+  border-left: 1px solid #cccccc;
+}
+
+.index_container .category .title {
+  color: #555;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+}
+
+.index_container .category .nav-link {
+  color: #555;
+  display: inline-block;
+  margin: 0;
+}
+
+.index_container .category .nav-link::after {
+  display: block;
+  content: "";
+  border-bottom: solid 2px #777;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+
+.index_container .category .nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* accommodations */
+
+.background {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 70vh;
+  margin-left: 15%;
+  margin-right: 15%;
+  border: 1px solid gray;
+}
+
+.background .list_wrapper {
+  height: 50vh;
+  overflow: auto;
+  border: 1px solid #cccccc;
+  border-radius: 2%;
+}
+
+.background .list_wrapper::-webkit-scrollbar {
+  width: 8px; /* 스크롤바의 너비 */
+}
+
+.background .list_wrapper::-webkit-scrollbar-thumb {
+  height: 30%; /* 스크롤바의 길이 */
+  background: #217af4; /* 스크롤바의 색상 */
+
+  border-radius: 10px;
+}
+
+.background .list_wrapper::-webkit-scrollbar-track {
+  background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
+}
+
+.background .list_wrapper .list-group-item {
+  cursor: pointer;
+}
+
+.background .information_wrapper {
+  display: flex;
+  justify-content: center;
+  height: 50vh;
+  width: 18vw;
+  border: 1px solid #cccccc;
+  border-radius: 2%;
+}
+
+.background .information_wrapper #information {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  padding-left: 5%;
+  padding-right: 5%;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.background .information_wrapper #information::-webkit-scrollbar {
+  width: 8px; /* 스크롤바의 너비 */
+  height: 8px;
+}
+
+.background .information_wrapper #information::-webkit-scrollbar-thumb {
+  height: 30%; /* 스크롤바의 길이 */
+  width: 30%;
+
+  background: #217af4; /* 스크롤바의 색상 */
+
+  border-radius: 8px;
+}
+
+.background .information_wrapper #information::-webkit-scrollbar-track {
+  background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
+}
+
+.background #map {
+  border: 1px solid #cccccc;
+  border-radius: 2%;
+}
