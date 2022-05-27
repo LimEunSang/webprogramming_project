@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>계산기 응용하기 - JSP</title>
+
+    <!-- css, bootstrap -->
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <!-- header -->
+    <div class="header" style="margin-bottom: 1%">
+      <h1 class="name">ES's blog</h1>
+      <div class="title_wrapper">
+        <h1 class="title">웹프로그래밍 프로젝트</h1>
+        <h6 class="last_update_date">2022.05.27</h6>
+      </div>
+    </div>
+
+    <!-- demo -->
+    <div class="background">
+      <div class="calculator">
+        <form name="forms" method="post" action="calc.jsp">
+          <input id="display" type="text" name="output" readonly />
+          <input
+            type="button"
+            value="1"
+            onclick="document.forms.output.value+='1'"
+          />
+          <input
+            type="button"
+            value="2"
+            onclick="document.forms.output.value+='2'"
+          />
+          <input
+            type="button"
+            value="3"
+            onclick="document.forms.output.value+='3'"
+          />
+          <input
+            type="button"
+            class="operator"
+            value="+"
+            onclick="document.forms.output.value+='+'"
+          />
+          <input
+            type="button"
+            value="4"
+            onclick="document.forms.output.value+='4'"
+          />
+          <input
+            type="button"
+            value="5"
+            onclick="document.forms.output.value+='5'"
+          />
+          <input
+            type="button"
+            value="6"
+            onclick="document.forms.output.value+='6'"
+          />
+          <input
+            type="button"
+            value="-"
+            onclick="document.forms.output.value+='-'"
+          />
+          <input
+            type="button"
+            value="7"
+            onclick="document.forms.output.value+='7'"
+          />
+          <input
+            type="button"
+            value="8"
+            onclick="document.forms.output.value+='8'"
+          />
+          <input
+            type="button"
+            value="9"
+            onclick="document.forms.output.value+='9'"
+          />
+          <input
+            type="button"
+            value="*"
+            onclick="document.forms.output.value+='*'"
+          />
+          <input
+            type="button"
+            class="clear"
+            value="C"
+            onclick="document.forms.output.value=''"
+          />
+          <input
+            type="button"
+            value="0"
+            onclick="document.forms.output.value+='0'"
+          />
+          <input type="submit" value="=" />
+          <input
+            type="button"
+            value="/"
+            onclick="document.forms.output.value+='/'"
+          />
+        </form>
+      </div>
+    </div>
+
+    <!-- container -->
+    <div class="container">
+      <!-- content -->
+      <div class="content">
+        <p>
+          JSP 계산기의 동작 구조는 이렇습니다. 식을 입력하고 연산 버튼(=)을
+          누르면 입력값을 JSP로 전달합니다. JSP는 브라우저로부터 전달된 입력값을
+          가져와 계산 후 결과를 포함한 화면을 출력합니다.
+        </p>
+        <p>
+          <a
+            href="https://github.com/LimEunSang/jeonju_accomodations/blob/main/src/main/webapp/accommodations.html"
+            >html 파일 코드</a
+          >와
+          <a
+            href="https://github.com/LimEunSang/jeonju_accomodations/blob/main/src/main/webapp/accommodations.html"
+            >jsp 파일 코드</a
+          >
+          참고해주세요.
+        </p>
+        <p>
+          html 파일에서 서블릿으로 구현할 때와 다른 점은 form 태그의 action
+          속성이 호출할 jsp 파일의 상대 경로라는 것 딱 하나입니다. 나머지는 모두
+          같습니다. 따라서 UI도 똑같습니다.
+        </p>
+        <p>
+          jsp 파일에 서블릿으로 작성한 java 파일의 doGet() 메서드 내용을
+          8~20행과 같이 스크립트릿 영역에 넣어줍니다. html 부분에서 결과를
+          출력해야 하므로 스크립트릿 영역 코드는 앞쪽에 배치합니다. 4~6행 코드는
+          jsp에서 import 하는 명령어입니다. 서블릿에서 구현할 때와 같이
+          javascript 코드를 사용하기 위해 삽입한 import문 입니다.
+        </p>
+        <p>
+          JSP를 사용하면 java 코드로 작성한 객체를 31행과 같이 html에서 쓸 수
+          있는 장점이 있습니다. 따라서 동적 웹페이지를 구성할 수 있죠. 마치
+          javascript를 <code>`${객체}`</code> 형식으로 사용하는 것 같이요.
+        </p>
+        <p>
+          java 코드 영역에서 동적으로 출력해 줄 객체를 정의했으면 그다음엔
+          22~33행과 같이 일반 html 파일 작성하듯 웹페이지를 만들면 됩니다. 딱
+          봐도 서블릿에 비해 상당히 효율적이네요.
+        </p>
+        <p>
+          서블릿 계산기 구현 페이지에서도 말했지만, 이는 상당히 비효율적인
+          구현입니다. 서버를 통한 JSP의 동작 원리만 이해하고 넘어갑시다😘
+        </p>
+      </div>
+
+      <!-- category -->
+      <div class="category">
+        <div class="title"><strong>category</strong></div>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html"> Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="kakaomapAPI.html">
+              kakaomap API 응용하기
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="calculatorServlet.html">
+              계산기 응용하기 - Servlet
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="calculatorJSP.html">
+              계산기 응용하기 - JSP
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+      <p>E-MAIL. dmstkd2905@naver.com / eunsang</p>
+      <p>Copyright © nothing.</p>
+    </div>
+  </body>
+</html>

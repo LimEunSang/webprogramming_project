@@ -29,13 +29,16 @@
   font-size: small;
 }
 
-/* footer */
-.footer {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-top: 1px solid #cccccc;
-  text-align: center;
-  color: #555;
+/* demo_wrapper */
+
+.background {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 70vh;
+  margin-left: 15%;
+  margin-right: 15%;
+  border: 1px solid gray;
 }
 
 /* container */
@@ -83,45 +86,44 @@
   transform: scaleX(1);
 }
 
-/* accommodations */
-
-.background {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 70vh;
-  margin-left: 15%;
-  margin-right: 15%;
-  border: 1px solid gray;
+/* footer */
+.footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #cccccc;
+  text-align: center;
+  color: #555;
 }
 
-.background .list_wrapper {
+/* accommodations */
+
+.list_wrapper {
   height: 50vh;
   overflow: auto;
   border: 1px solid #cccccc;
   border-radius: 2%;
 }
 
-.background .list_wrapper::-webkit-scrollbar {
+.list_wrapper::-webkit-scrollbar {
   width: 8px; /* 스크롤바의 너비 */
 }
 
-.background .list_wrapper::-webkit-scrollbar-thumb {
+.list_wrapper::-webkit-scrollbar-thumb {
   height: 30%; /* 스크롤바의 길이 */
   background: #217af4; /* 스크롤바의 색상 */
 
   border-radius: 10px;
 }
 
-.background .list_wrapper::-webkit-scrollbar-track {
+.list_wrapper::-webkit-scrollbar-track {
   background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
 }
 
-.background .list_wrapper .list-group-item {
+.list_wrapper .list-group-item {
   cursor: pointer;
 }
 
-.background .information_wrapper {
+.information_wrapper {
   display: flex;
   justify-content: center;
   height: 50vh;
@@ -130,7 +132,7 @@
   border-radius: 2%;
 }
 
-.background .information_wrapper #information {
+.information_wrapper #information {
   display: flex;
   align-items: center;
   margin-bottom: 0;
@@ -140,12 +142,12 @@
   white-space: nowrap;
 }
 
-.background .information_wrapper #information::-webkit-scrollbar {
+.information_wrapper #information::-webkit-scrollbar {
   width: 8px; /* 스크롤바의 너비 */
   height: 8px;
 }
 
-.background .information_wrapper #information::-webkit-scrollbar-thumb {
+.information_wrapper #information::-webkit-scrollbar-thumb {
   height: 30%; /* 스크롤바의 길이 */
   width: 30%;
 
@@ -154,11 +156,23 @@
   border-radius: 8px;
 }
 
-.background .information_wrapper #information::-webkit-scrollbar-track {
+.information_wrapper #information::-webkit-scrollbar-track {
   background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
 }
 
-.background #map {
+#map {
   border: 1px solid #cccccc;
   border-radius: 2%;
+}
+
+/* calculator */
+
+.calculator form {
+  display: grid;
+  grid-template-columns: repeat(4, 60px);
+  grid-template-rows: repeat(5, 48px);
+}
+
+.calculator #display {
+  grid-column-end: span 4;
 }

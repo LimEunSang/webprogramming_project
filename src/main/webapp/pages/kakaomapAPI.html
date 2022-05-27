@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <!-- 결과물 -->
+    <!-- demo -->
     <div class="background">
       <div class="list_wrapper">
         <ul id="accommodation_list" class="list-group"></ul>
@@ -46,8 +46,8 @@
       <!-- content -->
       <div class="content">
         <p>
-          위에 있는 데모는 제가 kakaomap API를 응용한 결과물이에요. 디자인이
-          볼품없지만 그만큼 카카오맵 사용에 집중했으니 이해해주세요😁
+          위에 있는 데모는 제가 카카오맵 API를 응용한 결과물이에요. 디자인이
+          볼품없지만 그만큼 기능 구현에 집중했으니 이해해주세요😁
         </p>
         <p>
           어떤 동작을 수행하는 데모인지 먼저 설명한 후에 구현 방법을
@@ -57,63 +57,68 @@
           우선 데모의 왼쪽 박스에는 전주 숙박 가능 업소 목록이 들어있어요.
           무료로 데이터를 제공하는
           <a href="https://www.data.go.kr/">공공데이터 포털</a>에서 전주 숙박
-          가능 업소 open API 데이터를 사용했어요. 수업 시간에 교과서 기준
+          가능 업소 open API 데이터를 사용해봤습니다. 수업 시간에 교과서 기준
           chapter 04에서 REST API에 대해 배웠는데, 실제로 사용해보기 위해서요.
           <del>
-            사실 이 부분은 kakaomap API를 사용하면서 더 나아가 다양한 API
+            사실 이 부분은 카카오맵 API를 사용하면서 더 나아가 다양한 API
             사용으로 주제를 확장하려고 사용해봤으나, 지금 생각해보니 과제 주제에
-            조금 어긋난 거 같네요.. 개념만 배우고 실습은 하지 않았거든요. 따라서
-            이 부분에 대한 자세한 구현 방법 설명은 생략하고 넘어가겠습니다.
+            조금 어긋난 거 같습니다. API에 대해 개념만 배우고 카카오맵 API를
+            제외하면 실습은 하지 않았거든요. 따라서 이 부분에 대한 자세한 구현
+            방법 설명은 생략하고 넘어가겠습니다.
           </del>
           목록의 아이템을 클릭하면 가운데 박스 내용이 클릭한 업소 정보 내용으로
           갱신돼요. 동시에 카카오맵에서는 클릭한 숙박 가능 업소의 장소를
           기준으로 위치를 검색하여 그 위치로 지도를 이동시키고 마커를 찍어요.
         </p>
-        <p>자, 이제 본격적으로 어떻게 구현하는지에 대해 알아보겠습니다.</p>
         <p>
-          코드 상세 내용은
+          자, 이제 본격적으로 어떻게 구현하는지를 알아보겠습니다. 코드 상세
+          내용은
           <a
             href="https://github.com/LimEunSang/jeonju_accomodations/blob/main/src/main/webapp/accommodations.html"
-            >html 코드</a
+            >html 파일 코드</a
           >와
           <a
             href="https://github.com/LimEunSang/jeonju_accomodations/blob/main/src/main/webapp/accommodations.js"
-            >javascript 코드</a
-          >를 참고해주세요!<br />
-          <strong>1. 카카오맵 출력하기: </strong> 카카오맵 API를 사용하기 위해
+            >javascript 파일 코드</a
+          >를 참고해주세요.
+        </p>
+        <p>
+          * <strong>1. 카카오맵 출력하기: </strong> 카카오맵 API를 사용하기 위해
           <a href="https://developers.kakao.com/console/app"
             >카카오맵 API 공식 사이트 - 키 발급</a
           >에 들어가서 로그인을 한 후 key를 발급받습니다. 그리고 html 파일에
           18행과 같이 코드를 작성합니다. 여기서
-          <code>appkey="[본인이 발급받은 JavaScipt key]"</code> 사용해주세요!!
+          <code>appkey="[본인이 발급받은 JavaScipt key]"</code> 사용해주세요!
           javascript 파일에 80~87행과 같이 map을 정의해놓고 html 파일에 30행과
-          같이 선언하면 map이 나타나요. 여기까지가 수업 시간에 다룬
-          내용이에요.<br />
+          같이 선언하면 map이 나타납니다. 여기까지가 수업 시간에 다룬
+          내용이에요.<br /><br />
           맵을 잘 띄웠다면 이제 기능을 추가해서 응용해봅시다! 기능 추가 코드는
-          전부 javascript 파일에 작성해요.<br />
-          <strong>2. 기능 추가 - 주소 명으로 지도 이동시키기: </strong> 96행과
-          같이 주소로 좌표를 검색하는 함수를 사용하기 위해 객체를 생성해줍니다.
-          이 함수는 목록 아이템을 클릭했을 때 실행되는 onclick 함수 내에서
-          53행과 같이 실행해줄게요. 함수의 첫 번째 인자로 검색할 string 주소
-          값을 넣습니다. 56행과 같이 그 주소를 좌표로 변환하여 변수에 저장해요.
-          그리고 71행과 같이 매개변수에 좌표를 넣어 코드를 작성하면 맵이
-          이동하게 됩니다.<br />
-          <strong>2. 기능 추가 - 마커 찍기: </strong> 59~62행과 같이 코드를
-          추가하시면 됩니다! 어떻게 동작하는지 몰라도 그대로 사용하면 돼요!<br />
-          <strong>2. 기능 추가 - 인포윈도우로 장소에 대한 설명 표시: </strong>
+          전부 javascript 파일에 작성하겠습니다.<br /><br />
+          *
+          <strong> 2. 기능 추가 - 주소 명으로 지도 이동시키기: </strong>
+          96행과 같이 주소로 좌표를 검색하는 함수를 사용하기 위해 객체를
+          생성해줍니다. 이 함수는 목록 아이템을 클릭했을 때 실행되는 onclick
+          함수 내에서 53행과 같이 실행해줄게요. 함수의 첫 번째 인자로 검색할
+          string 주솟값을 넣습니다. 56행과 같이 그 주소를 좌표로 변환하여 변수에
+          저장해요. 그리고 71행과 같이 매개변수에 좌표를 넣어 코드를 작성하면
+          맵이 이동하게 됩니다.<br /><br />
+          * <strong> 3. 기능 추가 - 마커 찍기: </strong> 59~62행과 같이 코드를
+          추가하시면 됩니다! 어떻게 동작하는지 몰라도 그대로 사용하면 돼요.<br /><br />
+          *
+          <strong> 4. 기능 추가 - 인포윈도우로 장소에 대한 설명 표시: </strong>
           65~68행은 인포위도우로 장소에 대한 설명을 표시합니다. 설명 내용은
-          66행과 같이 div 태그 내에 작성할 수 있어요! 저는 '업소명' 변수에
+          66행과 같이 div 태그 내에 작성할 수 있어요. 저는 '업소명' 변수에
           string 값을 집어넣어 사용했기 때문에 <code>${업소명}</code> 형식으로
-          작성했어요.<br />
-          <strong>2. 기능 추가 - 스카이뷰: </strong>90행, 93행 코드를 작성하면
-          스카이뷰로 지도 타입을 전환할 수 있는 기능이 생깁니다!
+          작성했습니다.<br /><br />
+          * <strong> 5. 기능 추가 - 스카이뷰: </strong>90행, 93행 코드를
+          작성하면 스카이뷰로 지도 타입을 전환할 수 있는 기능이 생깁니다.
         </p>
 
         <p>
           <a href="https://apis.map.kakao.com/web/sample/"
             >카카오맵 API 공식 사이트 - sample</a
           >에 들어가 보면 정말 유용하고 신기한 기능들이 많이 있어요. 혹시나
-          저처럼 카카오맵 API를 더 활용해 보실 분들은 여기 문서를 참고하세요!!
+          저처럼 카카오맵 API를 더 활용해 보실 분들은 여기 문서를 참고하세요!
         </p>
       </div>
 
@@ -125,10 +130,19 @@
             <a class="nav-link" href="index.html"> Home </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"> kakaomap API 응용하기 </a>
+            <a class="nav-link" href="kakaomapAPI.html">
+              kakaomap API 응용하기
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"> 계산기 응용하기 - 서블릿 </a>
+            <a class="nav-link" href="calculatorServlet.html">
+              계산기 응용하기 - Servlet
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="calculatorJSP.html">
+              계산기 응용하기 - JSP
+            </a>
           </li>
         </ul>
       </div>
