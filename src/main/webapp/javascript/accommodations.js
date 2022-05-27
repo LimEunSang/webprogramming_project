@@ -19,7 +19,7 @@ axios({
   let list = document.getElementById("accommodation_list");
   let info = document.getElementById("information");
   for (var i = 0; i < accommodations.length; i++) {
-    // 객체의 정보를 변수에 저장
+    // 객체의 정보를 변수에 저장합니다
     const 객실수 = accommodations[i].객실수;
     const 업소명 = accommodations[i].업소명;
     const 전화번호 = accommodations[i].전화번호;
@@ -27,10 +27,10 @@ axios({
     const 주차 = accommodations[i].주차;
     const 홈페이지 = accommodations[i].홈페이지;
 
-    // listitem 생성
+    // listitem을 생성합니다
     let listitem = document.createElement("li");
 
-    // listitem 정의
+    // 생성한 listitem을 정의합니다
     listitem.className = "list-group-item";
     listitem.innerText =
       accommodations[i].업소명 + "\n" + accommodations[i].주소;
@@ -73,7 +73,7 @@ axios({
       });
     };
 
-    // listitem 추가
+    // 정의한 listitem을 추가합니다
     list.appendChild(listitem);
   }
 
